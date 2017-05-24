@@ -1,0 +1,24 @@
+{
+    "name": "MyApp",
+    "version": "1.0.0",
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "cordova": {
+        "plugins": {
+            "cordova-plugin-console": {},
+            "cordova-plugin-geolocation": {},
+            "cordova-plugin-statusbar": {},
+            "cordova-plugin-whitelist": {},
+            "cordova-plugin-compat": {}
+        }
+    },
+    "dependencies": {
+        "cordova-ios": "^4.4.0",
+        "cordova-plugin-console": "~1.0.1",
+        "cordova-plugin-statusbar": "~1.0.1",
+        "cordova-plugin-whitelist": "~1.2.0",
+        "cordova-plugin-compat": "~1.1.0",
+        "cordova-plugin-geolocation": "~2.4.3"
+    }
+}
