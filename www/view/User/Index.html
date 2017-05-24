@@ -40,43 +40,14 @@
                 </ul>
             </div>
 
-            <style>
-            /* Some CSS styling */
-            #sketchpadapp {
-                /* Prevent nearby text being highlighted when accidentally dragging mouse outside confines of the canvas */
-                -webkit-touch-callout: none;
-                -webkit-user-select: none;
-                -khtml-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-                user-select: none;
+            <style type="text/css">
+            #canvas {
+              border:solid black 1px;
             }
-
-
-            #sketchpad {
-                float:left;
-                border:2px solid #888;
-                border-radius:4px;
-                position:relative; /* Necessary for correct mouse co-ords in Firefox */
-            }
-            </style>
-            <div class="row">
-                <div class="col-10"></div>
-                <div class="col-80">
-                    <div id="sketchpadapp">
-                        <div class="leftside1">
-                            <input type="submit" value="Clear Sketchpad" onclick="clearCanvas();">
-                        </div>
-                        <div class="rightside" style="width: 100%">
-                            <center><canvas id="sketchpad" height="300" width="400">
-                            </canvas></center>
-                            
-                        </div>
-                    </div>
-                </div>
-                <div class="col-10"></div>
-            </div>
-            
+          </style>
+             <canvas id="canvas" width="300" height="400">
+                You really badly need to use a different browser.
+              </canvas>           
         </div>
     </div>
 </div>
