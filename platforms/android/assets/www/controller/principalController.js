@@ -118,9 +118,9 @@ myApp.onPageInit('PrincipalUser', function (page) {
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
             // React to mouse events on the canvas, and mouseup on the entire document
-            canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
-            canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
-            window.addEventListener('mouseup', sketchpad_mouseUp, false);
+            //canvas.addEventListener('mousedown', sketchpad_mouseDown, false);
+            //canvas.addEventListener('mousemove', sketchpad_mouseMove, false);
+            //window.addEventListener('mouseup', sketchpad_mouseUp, false);
 
             // React to touch events on the canvas
             canvas.addEventListener('touchstart', sketchpad_touchStart, false);
