@@ -69,6 +69,13 @@
                 border-radius:4px;
                 position:relative; /* Necessary for correct mouse co-ords in Firefox */
             }
+            #clearbutton {
+                font-size: 15px;
+                padding: 10px;
+                -webkit-appearance: none;
+                background: #eee;
+                border: 1px solid #888;
+            }
             </style>
             <div id="sketchpadapp">
                 <div class="leftside">
@@ -79,7 +86,7 @@
                      <input type="submit" value="Clear Sketchpad" onclick="clearCanvas(canvas,ctx);">
                 </div>
                 <div class="rightside">
-                    <canvas id="sketchpad" height="300" width="400">
+                    <canvas id="sketchpad" height="300" width="200">
                     </canvas>
                 </div>
             </div>
