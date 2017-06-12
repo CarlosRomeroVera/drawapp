@@ -109,6 +109,9 @@ myApp.onPageInit('PrincipalUser', function (page) {
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
         // Get the specific canvas element from the HTML document
+        //canvas = document.getElementById('sketchpad');
+        var canvas = '<canvas id="sketchpad" width="'+(window.innerWidth-25)+'" height="300"></canvas>';
+        document.getElementById("preCanvas").innerHTML = canvas;
         canvas = document.getElementById('sketchpad');
 
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
@@ -128,5 +131,9 @@ myApp.onPageInit('PrincipalUser', function (page) {
         }
     }
 
-            init();
+    init();
+
+    $$('#clear').on('click', function(){
+        init();
+    });
 });

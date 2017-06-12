@@ -12,7 +12,7 @@
         <div class="page-content">
             <div class="content-block-title">Bienvenido al recolector de firmas para reuniones</div>
 
-            <div class="list-block">
+            <div class="list-block" style="margin-bottom: 0px;">
                 <ul>
                     <li>
                       <div class="item-content">
@@ -57,7 +57,7 @@
                 height:285px;
                 background-color:#def;
                 padding:10px;
-                border-radius:4px;
+                border-radius:2px;
             }
             .rightside {
                 float:left;
@@ -77,11 +77,12 @@
                 border: 1px solid #888;
             }
             </style>
+            <a href="javascript: ;" class="button button-round button-fill" id="clear">Limpiar</a>
+            <br>
             <div id="sketchpadapp">
- 
-                <div class="rightside">
-                    <canvas id="sketchpad" height="300" width="200">
-                    </canvas>
+                <div class="rightside" id="preCanvas">
+                    <!-- <canvas id="sketchpad" height="300" width="200">
+                    </canvas> -->
                 </div>
             </div>
 
