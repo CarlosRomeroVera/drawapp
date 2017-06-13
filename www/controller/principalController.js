@@ -105,6 +105,30 @@ myApp.onPageInit('PrincipalUser', function (page) {
         }
     }
 
+    var drawTouch = function() {
+        var start = function(e) {
+            ctx.beginPath();
+            getTouchPos();
+            // x = e.changedTouches[0].pageX;
+            // y = e.changedTouches[0].pageY-44;
+            x = touchX;
+            y = touchY;
+            ctx.moveTo(x,y);
+        };
+        var move = function(e) {
+            e.preventDefault();
+            getTouchPos();
+            // x = e.changedTouches[0].pageX;
+            // y = e.changedTouches[0].pageY-44;
+            x = touchX;
+            y = touchY;
+            ctx.lineTo(x,y);
+            ctx.stroke();
+        };
+        document.getElementById("sketchpad").addEventListener("touchstart", start, false);
+        document.getElementById("sketchpad").addEventListener("touchmove", move, false);
+    }; 
+
 
     // Set-up the canvas and add our event handlers after the page has loaded
     function init() {
@@ -114,9 +138,12 @@ myApp.onPageInit('PrincipalUser', function (page) {
         document.getElementById("preCanvas").innerHTML = canvas;
         canvas = document.getElementById('sketchpad');
 
+
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
         if (canvas.getContext)
             ctx = canvas.getContext('2d');
+            ctx.strokeStyle = "#000";
+            ctx.lineWidth = 5;
 
         // Check that we have a valid context to draw on/with before adding event handlers
         if (ctx) {
@@ -126,8 +153,9 @@ myApp.onPageInit('PrincipalUser', function (page) {
             //window.addEventListener('mouseup', sketchpad_mouseUp, false);
 
             // React to touch events on the canvas
-            canvas.addEventListener('touchstart', sketchpad_touchStart, false);
-            canvas.addEventListener('touchmove', sketchpad_touchMove, false);
+            // canvas.addEventListener('touchstart', sketchpad_touchStart, false);
+            // canvas.addEventListener('touchmove', sketchpad_touchMove, false);
+            drawTouch();
         }
     }
 

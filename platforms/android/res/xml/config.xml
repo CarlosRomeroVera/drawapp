@@ -7,7 +7,7 @@
     <feature name="Geolocation">
         <param name="android-package" value="org.apache.cordova.geolocation.Geolocation" />
     </feature>
-    <name>Draw RRPP</name>
+    <name>Draw APP</name>
     <description>
         Aplicación para recolectar firmas en eventos.
     </description>
