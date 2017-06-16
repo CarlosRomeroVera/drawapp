@@ -63,6 +63,7 @@ myApp.onPageInit('DetallesUser', function (page) {
     });//fin de ajax  
 
     $$('#finish').on('click', function(){
+        $('#finish').attr("disabled", true);
         //var id = generateUUID();
         //canvas = document.getElementById('sketchpad');
         //var dataURL = canvas.toDataURL();
@@ -85,8 +86,18 @@ myApp.onPageInit('DetallesUser', function (page) {
             dataType: 'text',
             //contentType: 'multipart/form-data',
             success: function(data){
-                alert(data);
+                if (data == 'ok') {
+                    $('#finish').attr("disabled", false);
+                    myApp.alert('Datos guardados', '¡Atención!');
+                    mainView.router.loadPage('../User/Activos.html');
+                }
+                //alert(data);
             }
+        }).fail( function() {
+            $('#finish').attr("disabled", false);
+            //alert( 'Comprueba tu conexión a internet e intenta de nuevo' );
+            myApp.alert('Comprueba tu conexión a internet e intenta de nuevo', '¡Atención!');
+
         });//fin de ajax
     });
 });

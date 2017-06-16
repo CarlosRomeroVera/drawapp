@@ -1,26 +1,34 @@
 myApp.onPageInit('PrincipalUser', function (page) {
-    $.ajax({
-        type: 'POST', 
-        url:  window.server + 'obtener_asuntos.php',
-        data:   ({
-                    
-                }),
-        cache: false,
-        dataType: 'text',
-        success: function(data){
+    function asignarAsuntos(){
+        $.ajax({
+            type: 'POST', 
+            url:  window.server + 'obtener_asuntos.php',
+            data:   ({
+                        
+                    }),
+            cache: false,
+            dataType: 'text',
+            success: function(data){
+                
+                if(data != 'error'){
+                    var obj = $.parseJSON(data);
+                    var datos = '';
             
-            if(data != 'error'){
-                var obj = $.parseJSON(data);
-                var datos = '';
-        
-                $.each(obj.asunto, function(i,asunto){
-                    //alert(asunto.id);
-                    datos = datos + '<option value="'+asunto.id+'">'+asunto.nombre+'</option>'
-                });
-                $("#asuntos").html(datos);
+                    $.each(obj.asunto, function(i,asunto){
+                        //alert(asunto.id);
+                        datos = datos + '<option value="'+asunto.id+'">'+asunto.nombre+'</option>'
+                    });
+                    $("#asuntosFirst").html(datos);
+                }
             }
-        }
-    });//fin de ajax
+        }).fail( function() {
+
+            //alert( 'Comprueba tu conexión a internet e intenta de nuevo' );
+            asignarAsuntos();
+
+        });//fin de ajax
+    }
+    
 
 	var canvas,ctx;
 
@@ -160,6 +168,7 @@ myApp.onPageInit('PrincipalUser', function (page) {
         var canvas = '<canvas id="sketchpad" width="'+(window.innerWidth-25)+'" height="300"></canvas>';
         document.getElementById("preCanvas").innerHTML = canvas;
         canvas = document.getElementById('sketchpad');
+        asignarAsuntos();
 
 
         // If the browser supports the canvas tag, get the 2d drawing context for this canvas
@@ -207,6 +216,7 @@ myApp.onPageInit('PrincipalUser', function (page) {
     });
 
     $$('#finish').on('click', function(){
+        $('#finish').attr("disabled", true);
         var id = generateUUID();
         canvas = document.getElementById('sketchpad');
         var dataURL = canvas.toDataURL();
@@ -220,7 +230,7 @@ myApp.onPageInit('PrincipalUser', function (page) {
                         horallegada: $("#fecha").val(),
                         horasalida: $("#fechaSalida").val(),
                         dependencia: $("#dependencia").val(),
-                        asunto: $("#asuntos").val(),
+                        asunto: $("#asuntosFirst").val(),
                         comentarios: $("#comentarios").val(),
                         evidencia: imagen,
                         firma: dataURL,
@@ -229,8 +239,17 @@ myApp.onPageInit('PrincipalUser', function (page) {
             dataType: 'text',
             //contentType: 'multipart/form-data',
             success: function(data){
-                alert(data);
+                if (data == 'ok') {
+                    $('#finish').attr("disabled", false);
+                    myApp.alert('Datos guardados', '¡Atención!');
+                    mainView.router.refreshPage();
+                }
             }
+        }).fail( function() {
+            $('#finish').attr("disabled", false);
+            //alert( 'Comprueba tu conexión a internet e intenta de nuevo' );
+            myApp.alert('Comprueba tu conexión a internet e intenta de nuevo', '¡Atención!');
+
         });//fin de ajax
     });
 });
