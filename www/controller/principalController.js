@@ -1,4 +1,27 @@
 myApp.onPageInit('PrincipalUser', function (page) {
+    $.ajax({
+        type: 'POST', 
+        url:  window.server + 'obtener_asuntos.php',
+        data:   ({
+                    
+                }),
+        cache: false,
+        dataType: 'text',
+        success: function(data){
+            
+            if(data != 'error'){
+                var obj = $.parseJSON(data);
+                var datos = '';
+        
+                $.each(obj.asunto, function(i,asunto){
+                    //alert(asunto.id);
+                    datos = datos + '<option value="'+asunto.id+'">'+asunto.nombre+'</option>'
+                });
+                $("#asuntos").html(datos);
+            }
+        }
+    });//fin de ajax
+
 	var canvas,ctx;
 
     // Variables to keep track of the mouse position and left-button status 
@@ -163,5 +186,51 @@ myApp.onPageInit('PrincipalUser', function (page) {
 
     $$('#clear').on('click', function(){
         init();
+    });
+
+    var imagen = '';
+
+    jQuery('#evidencia').on('change', function(e) {
+        var Lector,
+        oFileInput = this;
+     
+        if (oFileInput.files.length === 0) {
+            return;
+        };
+     
+        Lector = new FileReader();
+        Lector.onloadend = function(e) {
+            // jQuery('#vistaPrevia').attr('src', e.target.result); 
+            imagen = e.target.result;         
+        };
+        Lector.readAsDataURL(oFileInput.files[0]);
+    });
+
+    $$('#finish').on('click', function(){
+        var id = generateUUID();
+        canvas = document.getElementById('sketchpad');
+        var dataURL = canvas.toDataURL();
+        $.ajax({
+            type: 'POST', 
+            url:  window.server + 'guardar_visita.php',
+            data:   ({
+                        id: id,
+                        user_id: window.user_id,
+                        nombre: $("#nombre").val(),
+                        horallegada: $("#fecha").val(),
+                        horasalida: $("#fechaSalida").val(),
+                        dependencia: $("#dependencia").val(),
+                        asunto: $("#asuntos").val(),
+                        comentarios: $("#comentarios").val(),
+                        evidencia: imagen,
+                        firma: dataURL,
+                    }),
+            cache: false,
+            dataType: 'text',
+            //contentType: 'multipart/form-data',
+            success: function(data){
+                alert(data);
+            }
+        });//fin de ajax
     });
 });

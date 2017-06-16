@@ -20,7 +20,7 @@
                         <div class="item-inner">
                           <div class="item-title label">Nombre</div>
                           <div class="item-input">
-                            <input type="text" placeholder="Your name">
+                            <input type="text" placeholder="Nombre completo" id="nombre">
                           </div>
                         </div>
                       </div>
@@ -30,9 +30,71 @@
                       <div class="item-content">
                         <div class="item-media"><i class="icon f7-icons">calendar</i></div>
                         <div class="item-inner">
-                          <div class="item-title label">Date time</div>
+                          <div class="item-title label">Entrada</div>
                           <div class="item-input">
-                            <input type="datetime-local">
+                            <input type="datetime-local" placeholder="Fecha y hora" id="fecha">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">calendar</i></div>
+                        <div class="item-inner">
+                          <div class="item-title label">Salida</div>
+                          <div class="item-input">
+                            <input type="datetime-local" placeholder="Fecha y hora" id="fechaSalida">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">bag_fill</i></div>
+                        <div class="item-inner">
+                          <div class="item-title label">Dependencia</div>
+                          <div class="item-input">
+                            <input type="text" placeholder="Secretaría o sub..." id="dependencia">
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">book</i></div>
+                        <div class="item-inner">
+                          <div class="item-title label">Asunto</div>
+                          <div class="item-input">
+                            <select id="asuntos">
+                            </select>
+                          </div>  
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">tags_fill</i></div>
+                        <div class="item-inner">
+                          <div class="item-title label">Comentarios</div>
+                          <div class="item-input">
+                            <!-- <input type="textarea" placeholder="" id="comentarios"> -->
+                            <textarea id="comentarios" placeholder="Cosas relevantes..."></textarea>
+                          </div>
+                        </div>
+                      </div>
+                    </li>
+
+                    <li>
+                      <div class="item-content">
+                        <div class="item-media"><i class="icon f7-icons">camera</i></div>
+                        <div class="item-inner">
+                          <div class="item-title label">Evidencia</div>
+                          <div class="item-input">
+                            <input type="file" placeholder="" id="evidencia">
                           </div>
                         </div>
                       </div>
@@ -68,6 +130,7 @@
                 border:2px solid #888;
                 border-radius:4px;
                 position:relative; /* Necessary for correct mouse co-ords in Firefox */
+                /*margin-bottom: 15px;*/
             }
             #clearbutton {
                 font-size: 15px;
@@ -85,7 +148,7 @@
                     </canvas> -->
                 </div>
             </div>
-
+            <a href="javascript: ;" class="button button-round button-fill color-green" id="finish" style="top: 15px;">Guardar</a>
         </div>
     </div>
 </div>

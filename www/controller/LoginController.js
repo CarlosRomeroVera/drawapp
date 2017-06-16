@@ -52,31 +52,6 @@ $(function() {
 
         //window.location.href = "../Index/Index.html";
     }
-
-    $.ajax({
-        type: 'POST', 
-        url:  window.server + 'obtener_eventos.php',
-        data:   ({
-                    
-                }),
-        cache: false,
-        dataType: 'text',
-        success: function(data){
-            
-            if(data != 'error'){
-                var obj = $.parseJSON(data);
-                var datos = '';
-        
-                $.each(obj.evento, function(i,evento){
-                    datos = datos + '<option value="'+evento.id+'">'+evento.nombre+'</option>'
-                });
-                $("#evento").html(datos);
-            }
-            else{
-                myApp.alert('Usuario o contraseña incorrecta', '¡Atención!');
-            }
-        }
-    });//fin de ajax
 });
 
 //BUTTON ENVIAR DE LOGIN
@@ -95,26 +70,30 @@ $$('#IniciarSesion').on('click', function(){
         cache: false,
         dataType: 'text',
         success: function(data){
+            var obj = $.parseJSON(data);
+            var datos = '';
+    
+            $.each(obj.user, function(i,user){
+                if (user.info == 'Incorrecto') {
+                    myApp.alert('Datos incorrectos', '¡Atención!');
+                }else{
+                    var obj = $.parseJSON(data);
+                    var datos = '';
             
-            if(data != 'error'){
-                var obj = $.parseJSON(data);
-                var datos = '';
-        
-                $.each(obj.user, function(i,user){
-                    window.user_id = user.id;
-                    window.user_usuario = user.username;
-                    window.user_organismo = user.organismo_id;
-                    datos = user.id+" "+user.username;
-                });
-                
-                var result = datos.split(" ");
-                localStorage.setItem('idUser', result[0]);
-                localStorage.setItem('User', result[1]);
-                mainView.router.loadPage('../User/Index.html');
-            }
-            else{
-                myApp.alert('Usuario o contraseña incorrecta', '¡Atención!');
-            }
+                    $.each(obj.user, function(i,user){
+                        window.user_id = user.id;
+                        window.user_usuario = user.username;
+                        //window.user_organismo = user.organismo_id;
+                        datos = user.id+" "+user.username;
+                    });
+                    
+                    var result = datos.split(" ");
+                    localStorage.setItem('idUser', result[0]);
+                    localStorage.setItem('User', result[1]);
+                    mainView.router.loadPage('../User/Index.html');
+                }
+            });
+            
         }
     });//fin de ajax
     

@@ -24,11 +24,11 @@ include_once ("db_config.php");
             echo '{"user":'.json_encode($var).'}';
          }
          else{
-            echo 'error';
+            echo '{"user":[{"info": "Incorrecto"}]}';
          }
       } 
       else {
-          echo 'error';
+          echo '{"user":[{"info": "Incorrecto"}]}';
       }
 
    }
