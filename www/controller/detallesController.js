@@ -42,6 +42,13 @@ myApp.onPageInit('DetallesUser', function (page) {
                     for (var i = 0; i < persona.hora_entrada.length; i ++){
                         contenido += (persona.hora_entrada.charAt(i) == " ") ? "T" : persona.hora_entrada.charAt(i);
                     }
+                    if (persona.hora_salida != null) {
+                        contenidoSalida = "";
+                        for (var i = 0; i < persona.hora_salida.length; i ++){
+                            contenidoSalida += (persona.hora_salida.charAt(i) == " ") ? "T" : persona.hora_salida.charAt(i);
+                        }
+                        document.getElementById("fechaSalida").value = contenidoSalida;
+                    }
                     $('#nombre').val(persona.nombre);
                     document.getElementById("fecha").value = contenido;
                     $('#dependencia').val(persona.dependencia);
@@ -89,7 +96,8 @@ myApp.onPageInit('DetallesUser', function (page) {
                 if (data == 'ok') {
                     $('#finish').attr("disabled", false);
                     myApp.alert('Datos guardados', '¡Atención!');
-                    mainView.router.loadPage('../User/Activos.html');
+                    //mainView.router.loadPage('../User/Activos.html');
+                    mainView.router.back();
                 }
                 //alert(data);
             }
