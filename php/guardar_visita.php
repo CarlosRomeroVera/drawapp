@@ -8,7 +8,8 @@ $horallegada = $_POST['horallegada'];
 $horasalida = $_POST['horasalida'];
 $dependencia = $_POST['dependencia'];
 $asunto = $_POST['asunto'];
-$comentarios = $_POST['comentarios'];
+//$comentarios = $_POST['comentarios'];
+$comentarios = str_replace(' ','_',$_POST['comentarios']);
 $evidencia = $_POST['evidencia'];
 $firma = $_POST['firma'];
  

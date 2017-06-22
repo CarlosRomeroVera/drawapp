@@ -1,6 +1,5 @@
 myApp.onPageInit('DetallesUser', function (page) {
     cont = 0;
-	//alert(window.resultado_id);
     $.ajax({
         type: 'POST', 
         url:  window.server + 'obtener_asuntos.php',
@@ -28,7 +27,6 @@ myApp.onPageInit('DetallesUser', function (page) {
         url:  window.server + 'obtener_detalles.php',
         data:   ({
                     id: window.resultado_id,
-                    //evento: window.evento_id,
                 }),
         cache: false,
         dataType: 'text',
@@ -37,7 +35,6 @@ myApp.onPageInit('DetallesUser', function (page) {
                 var obj = $.parseJSON(data);
                 var html = '';
                 $.each(obj.persona, function(i,persona){
-                    //alert(persona.hora_entrada);
                     contenido = "";
                     for (var i = 0; i < persona.hora_entrada.length; i ++){
                         contenido += (persona.hora_entrada.charAt(i) == " ") ? "T" : persona.hora_entrada.charAt(i);
@@ -63,31 +60,23 @@ myApp.onPageInit('DetallesUser', function (page) {
             
         }
     }).fail( function() {
-
-        //alert( 'Comprueba tu conexión a internet e intenta de nuevo' );
         myApp.alert('Comprueba tu conexión a internet e intenta de nuevo', '¡Atención!');
 
     });//fin de ajax  
 
     $$('#finish').on('click', function(){
         $('#finish').attr("disabled", true);
-        //var id = generateUUID();
-        //canvas = document.getElementById('sketchpad');
-        //var dataURL = canvas.toDataURL();
         $.ajax({
             type: 'POST', 
             url:  window.server + 'editar_visita.php',
             data:   ({
                         id: window.resultado_id,
-                        //user_id: window.user_id,
                         nombre: $("#nombre").val(),
                         horallegada: $("#fecha").val(),
                         horasalida: $("#fechaSalida").val(),
                         dependencia: $("#dependencia").val(),
                         asunto: $("#asuntos").val(),
                         comentarios: $("#comentarios").val(),
-                        //evidencia: imagen,
-                        //firma: dataURL,
                     }),
             cache: false,
             dataType: 'text',

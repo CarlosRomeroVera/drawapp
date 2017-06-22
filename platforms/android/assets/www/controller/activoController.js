@@ -17,7 +17,7 @@ myApp.onPageInit('ActivosUser', function (page) {
     }).keyup();
 
     $('#cancel').on('click', function(){
-    	alert('cancel');
+    	//alert('cancel');
     	busca('');
     });
 
